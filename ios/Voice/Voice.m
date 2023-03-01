@@ -45,6 +45,9 @@
     // Activate the audio session
     [self.audioSession setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&audioSessionError];
     
+    // Set no interruption from system alerts
+    [self.audioSession setPrefersNoInterruptionsFromSystemAlerts:YES error:nil];
+    
     if (audioSessionError != nil) {
         [self sendResult:@{@"code": @"audio", @"message": [audioSessionError localizedDescription]} :nil :nil :nil];
         return NO;
